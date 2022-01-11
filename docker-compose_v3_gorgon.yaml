@@ -1,0 +1,45 @@
+version: '3.5'
+services:
+    mysql-server:
+        image: mariadb
+        restart: always
+        ports:
+          3306:3306
+        volumes:
+        - ./mariadb/data:/var/lib/mysql
+        stop_grace_period: 1m
+        networks:
+          zbx_net_backend:
+            aliases:
+            - mysql-server
+            - nextcloud-database
+            - zabbix-database
+            - openeats-database
+            - cops-database
+        secrets:
+        - MYSQL_ROOT_PASSWORD
+
+
+
+networks:
+  gorgon_frontend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.201.0/24
+  gorgon_backend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    #internal: true
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.222.0/24
+
+secrets:
+  MYSQL_ROOT_PASSWORD:
+    file: ./mariadb/.MYSQL_ROOT_PASSWORD
