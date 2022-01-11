@@ -1,7 +1,6 @@
 version: '3.5'
 services:
-  mariadb:
-    name: mariadb
+  mysql-server:
     image: mariadb
     restart: always
     ports:
