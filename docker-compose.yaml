@@ -1,23 +1,24 @@
 version: '3.5'
 services:
-    mysql-server:
-        image: mariadb
-        restart: always
-        ports:
-        - 3306:3306
-        volumes:
-        - ./mariadb/data:/var/lib/mysql
-        stop_grace_period: 1m
-        networks:
-          gorgon_backend:
-            aliases:
-            - mysql-server
-            - nextcloud-database
-            - zabbix-database
-            - openeats-database
-            - cops-database
-        secrets:
-        - MYSQL_ROOT_PASSWORD
+  mariadb:
+    name: mariadb
+    image: mariadb
+    restart: always
+    ports:
+    - 3306:3306
+    volumes:
+    - ./mariadb/data:/var/lib/mysql
+    stop_grace_period: 1m
+    networks:
+      gorgon_backend:
+        aliases:
+        - mysql-server
+        - nextcloud-database
+        - zabbix-database
+        - openeats-database
+        - cops-database
+    secrets:
+    - MYSQL_ROOT_PASSWORD
 
 
 
