@@ -4,7 +4,7 @@ services:
         image: mariadb
         restart: always
         ports:
-          3306:3306
+        - 3306:3306
         volumes:
         - ./mariadb/data:/var/lib/mysql
         stop_grace_period: 1m
