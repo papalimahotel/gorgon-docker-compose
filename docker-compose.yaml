@@ -9,7 +9,7 @@ services:
         - ./mariadb/data:/var/lib/mysql
         stop_grace_period: 1m
         networks:
-          zbx_net_backend:
+          gorgon_backend:
             aliases:
             - mysql-server
             - nextcloud-database
